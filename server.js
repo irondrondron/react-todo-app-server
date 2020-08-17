@@ -8,18 +8,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const Users = require('./router/Users')
+const Users = require('./routes/Users');
 
-app.usr('/users', Users)
+app.use('/users', Users);
 
-app.listen(port, () =>{
+app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
-})
-
-// // app.get('/', (req, res) => {
-// //   res.send('hello from the products server');
-// // });
-
-// app.listen(4000, () => {
-//   console.log(`Products server listening on port 4000`);
-// });
+});
