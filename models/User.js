@@ -9,7 +9,7 @@ module.exports = db.sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    login: {
+    username: {
       type: Sequelize.STRING,
     },
     password: {
