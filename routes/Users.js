@@ -10,7 +10,6 @@ users.use(cors());
 process.env.SECRET_KEY = 'secret';
 
 users.post('/register', (req, res) => {
-  const today = new Date();
   const userData = {
     username: req.body.username,
     password: req.body.password,
@@ -29,7 +28,7 @@ users.post('/register', (req, res) => {
           });
         });
       } else {
-        res.json({ error: 'User already exists' });
+        res.status(409).json({ error: 'User already exists' });
       }
     })
     .catch((err) => {
