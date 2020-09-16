@@ -61,11 +61,11 @@ users.post('/login', (req, res) => {
     });
 });
 
-users.get('/profile', (req, res) => {
-  var decoded = jwt.verify(
-    req.headers['authorization'],
-    process.env.SECRET_KEY
-  );
+users.post('/profile', (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  // jwt.verify(token)
+  let decoded = jwt.verify(token, process.env.SECRET_KEY);
+  console.log(decoded, process.env.SECRET_KEY);
 
   User.findOne({
     where: {
@@ -74,7 +74,7 @@ users.get('/profile', (req, res) => {
   })
     .then((user) => {
       if (user) {
-        res.json(user);
+        res.json(user.username);
       } else {
         res.send('User does not exist');
       }
